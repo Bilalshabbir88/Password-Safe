@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CipherVault</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL,GRAD,opsz@400,1,0,24" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- SCREEN: Welcome / Create -->
+    <div id="screen-welcome" class="screen">
+        <div class="center-card-wrapper">
+            <h2 style="color: var(--primary)">CipherVault</h2>
+            <p style="margin-bottom: 24px; color: var(--text-dim)">Create your master password</p>
+            <input type="password" id="create-pwd" placeholder="Master Password">
+            <input type="password" id="create-pwd-confirm" placeholder="Confirm Password">
+            <button onclick="app.createVault()">Create Vault</button>
+        </div>
+    </div>
+
+    <!-- SCREEN: Unlock -->
+    <div id="screen-unlock" class="screen">
+        <div class="center-card-wrapper">
+            <h2 style="color: var(--primary)">CipherVault</h2>
+            <p style="margin-bottom: 24px; color: var(--text-dim)">Vault is locked</p>
+            <input type="password" id="unlock-pwd" placeholder="Master Password">
+            <button onclick="app.unlockVault()">Unlock</button>
+        </div>
+    </div>
+
+    <!-- SCREEN: Dashboard -->
+    <div id="screen-dashboard" class="screen">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="brand">
+                <span class="material-symbols-outlined">lock</span>
+                <b>CipherVault</b>
+            </div>
+            <button onclick="app.showNewEntry()">+ New Entry</button>
+            <br>
+            <div style="color: var(--primary); font-weight: 600; cursor: pointer;">All Vaults</div>
+            <div style="color: var(--text-dim); cursor: pointer;" onclick="app.lockVault()">Lock Vault</div>
+        </div>
+
+        <!-- List Column -->
+        <div class="list-col">
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search vault..." onkeyup="app.onSearch()">
+            </div>
+            <div class="entries-list" id="entries-list">
+                <!-- Entries injected via JS -->
+            </div>
+        </div>
+
+        <!-- Detail Column -->
+        <div class="detail-col">
+            <div id="empty-state" style="color: var(--text-dim); text-align: center; margin-top: 100px;">
+                Select an entry or create a new one.
+            </div>
+            
+            <div class="detail-card hidden" id="detail-view">
+                <div class="detail-header">
+                    <div class="detail-title" id="det-name">Google</div>
+                    <button style="width: auto; padding: 8px 16px;">Launch</button>
+                </div>
+
+                <div class="field-group">
+                    <div class="field-label">Username / Email</div>
+                    <div class="field-value">
+                        <span id="det-user">user@example.com</span>
+                        <span class="material-symbols-outlined" style="cursor: pointer; color: var(--text-dim)" onclick="app.copyToClipboard('det-user')">content_copy</span>
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <div class="field-label">Password</div>
+                    <div class="field-value">
+                        <span id="det-pass" class="mono">••••••••••••</span>
+                        <div style="display:flex; gap:8px;">
+                            <span class="material-symbols-outlined" style="cursor: pointer; color: var(--text-dim)" id="det-pass-toggle" onclick="app.togglePassword()">visibility</span>
+                            <span class="material-symbols-outlined" style="cursor: pointer; color: var(--text-dim)" onclick="app.copyToClipboard('det-pass-raw')">content_copy</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <button style="background: transparent; border: 1px solid var(--border); color: var(--error); margin-top: 24px;" onclick="app.deleteCurrent()">Delete Entry</button>
+            </div>
+
+            <!-- New Entry Form -->
+            <div class="detail-card hidden" id="new-entry-view">
+                <h2 style="margin-bottom: 24px;">Add New Entry</h2>
+                <div class="field-group">
+                    <div class="field-label">Account Name</div>
+                    <input type="text" id="new-name" placeholder="e.g. Google">
+                </div>
+                <div class="field-group">
+                    <div class="field-label">Username / Email</div>
+                    <input type="text" id="new-user">
+                </div>
+                <div class="field-group">
+                    <div class="field-label" style="display: flex; justify-content: space-between; align-items: center;">
+                        Password
+                        <button type="button" onclick="app.generatePassword()" style="width: auto; padding: 4px 8px; font-size: 10px; background: var(--surface-hover); color: var(--primary); border: 1px solid var(--border);">Generate 16-char</button>
+                    </div>
+                    <input type="text" id="new-pass" class="mono">
+                </div>
+                <button onclick="app.saveNewEntry()">Save Entry</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">Copied to clipboard!</div>
+
+    <script src="api.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

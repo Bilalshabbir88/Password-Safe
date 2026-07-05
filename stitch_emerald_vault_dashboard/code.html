@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CipherVault - All Vaults</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-container": "#00612e",
+                        "inverse-on-surface": "#313030",
+                        "surface-container-highest": "#353534",
+                        "on-secondary-fixed-variant": "#00513d",
+                        "tertiary-container": "#ffba79",
+                        "surface-bright": "#393939",
+                        "on-tertiary-fixed": "#2d1600",
+                        "surface": "#131313",
+                        "on-error": "#690005",
+                        "outline": "#859585",
+                        "surface-container": "#201f1f",
+                        "on-secondary-fixed": "#002117",
+                        "primary-fixed": "#62ff96",
+                        "on-tertiary-container": "#794810",
+                        "on-tertiary-fixed-variant": "#6a3c03",
+                        "on-primary-fixed": "#00210b",
+                        "inverse-surface": "#e5e2e1",
+                        "secondary-container": "#00e1ae",
+                        "secondary-fixed": "#45fec9",
+                        "primary-container": "#00e676",
+                        "surface-container-high": "#2a2a2a",
+                        "secondary-fixed-dim": "#00e1ae",
+                        "on-primary": "#003918",
+                        "inverse-primary": "#006d35",
+                        "on-surface": "#e5e2e1",
+                        "on-surface-variant": "#bacbb9",
+                        "on-secondary": "#003829",
+                        "on-secondary-container": "#005e47",
+                        "surface-tint": "#00e475",
+                        "error-container": "#93000a",
+                        "outline-variant": "#3b4a3d",
+                        "on-background": "#e5e2e1",
+                        "surface-variant": "#353534",
+                        "tertiary-fixed": "#ffdcbf",
+                        "on-primary-fixed-variant": "#005226",
+                        "background": "#131313",
+                        "surface-dim": "#131313",
+                        "secondary": "#45fec9",
+                        "tertiary-fixed-dim": "#fdb878",
+                        "surface-container-lowest": "#0e0e0e",
+                        "tertiary": "#ffdec4",
+                        "on-tertiary": "#4b2800",
+                        "primary-fixed-dim": "#00e475",
+                        "primary": "#75ff9e",
+                        "surface-container-low": "#1c1b1b",
+                        "error": "#ffb4ab",
+                        "on-error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "margin_mobile": "16px",
+                        "container_max_width": "1440px",
+                        "unit": "8px",
+                        "margin_desktop": "40px",
+                        "sidebar_width": "260px"
+                    },
+                    "fontFamily": {
+                        "mono-data": ["JetBrains Mono"],
+                        "display": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "mono-data": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+                        "display": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Custom Scrollbar for sleekness */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2a2a2a;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #353534;
+        }
+
+        /* Progress Ring Animation */
+        .progress-ring__circle {
+            transition: stroke-dashoffset 1s ease-in-out;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md text-body-md h-screen overflow-hidden flex">
+<!-- Left Column: SideNavBar -->
+<nav class="bg-surface-container dark:bg-surface-container fixed h-full w-[260px] left-0 top-0 flex flex-col py-6 px-4 z-20">
+<!-- Brand -->
+<div class="flex items-center gap-3 mb-8 px-2">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center shadow-[0_0_15px_rgba(0,230,118,0.3)]">
+<span class="material-symbols-outlined filled text-on-primary-container text-2xl">lock</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary">CipherVault</h1>
+<p class="font-label-caps text-label-caps text-on-surface-variant">Premium Security</p>
+</div>
+</div>
+<!-- CTA -->
+<button class="w-full bg-primary-container text-on-primary-container font-headline-md text-headline-md rounded-lg py-3 px-4 flex items-center justify-center gap-2 mb-8 hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined">add</span>
+            New Entry
+        </button>
+<!-- Navigation Links -->
+<div class="flex-1 flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-primary dark:text-primary font-bold border-r-4 border-primary bg-primary/10 transition-colors" href="#">
+<span class="material-symbols-outlined">shield</span>
+<span>All Vaults</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">star</span>
+<span>Favorites</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">credit_card</span>
+<span>Credit Cards</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">description</span>
+<span>Secure Notes</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">health_and_safety</span>
+<span>Security Health</span>
+</a>
+</div>
+<!-- Footer -->
+<div class="mt-auto pt-4 border-t border-outline-variant">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area (Fluid, offset by sidebar) -->
+<main class="ml-[260px] flex-1 flex h-full">
+<!-- Middle Column: Scrollable List -->
+<div class="w-1/3 min-w-[320px] max-w-[450px] border-r border-outline-variant bg-surface flex flex-col h-full z-10 relative">
+<!-- Sticky Search Header -->
+<div class="sticky top-0 z-10 bg-surface/80 dark:bg-surface/80 backdrop-blur-md p-6 border-b border-outline-variant">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full bg-[#1E1E1E] text-on-surface font-body-md text-body-md border border-[#333333] rounded-lg pl-12 pr-4 py-3 focus:outline-none focus:border-primary focus:ring-0 transition-colors placeholder:text-on-surface-variant" placeholder="Search vault..." type="text"/>
+</div>
+</div>
+<!-- List Content -->
+<div class="flex-1 overflow-y-auto p-4 space-y-2">
+<!-- Selected Item: Google -->
+<div class="group flex items-center justify-between p-4 rounded-xl bg-surface-container-high border border-outline-variant cursor-pointer relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
+<div class="flex items-center gap-4 pl-2">
+<div class="w-10 h-10 rounded-full bg-white flex items-center justify-center p-2 shrink-0">
+<img class="w-full h-full object-contain" data-alt="A highly detailed 3D render of the Google 'G' logo icon, rendered in clean vibrant colors on a pure white background. The lighting is soft and studio-quality, creating a premium tech aesthetic. Deep charcoal background context is implied." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDK49BasjAV0UEeuXBv-TcFYoLIHRqlBsNmJSgVjGu8-iIbDvRe46di3eeSzbory-YnsQCmXAb30HKAvT-sns3yX5inCRoYriLOZLF2uj-LnDFGq5ZID6FbzTtcwbHnulo79V-mTO2SXVetGUd59YwMbfJ7DoEXtB5cCMG7Kto_6vMW2OCkypWg6htTWfHZ9OpiJu10OycMofjvcbQTPb6kW0NXS-CqjczdTfATAVBkIkq9_AQ25yRjQplKcVkawrKaljye64NmN0Jb"/>
+</div>
+<div class="overflow-hidden">
+<h3 class="font-headline-md text-[16px] font-bold text-on-surface truncate">Google</h3>
+<p class="font-body-md text-body-md text-on-surface-variant truncate">jane.doe@gmail.com</p>
+</div>
+</div>
+<button class="opacity-0 group-hover:opacity-100 transition-opacity p-2 text-on-surface-variant hover:text-primary rounded-lg hover:bg-[#353534]">
+<span class="material-symbols-outlined">content_copy</span>
+</button>
+</div>
+<!-- Unselected Item: Netflix -->
+<div class="group flex items-center justify-between p-4 rounded-xl hover:bg-surface-container-high border border-transparent cursor-pointer transition-colors">
+<div class="flex items-center gap-4 pl-2">
+<div class="w-10 h-10 rounded-full bg-black flex items-center justify-center p-2 shrink-0 border border-[#333333]">
+<img class="w-full h-full object-contain" data-alt="A crisp, high-resolution rendering of the red Netflix 'N' icon on a deep black background. The lighting highlights the glossy finish of the icon, fitting perfectly within a dark-mode cyber-tech UI environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVB8fHLjtNFGX90GjoOfflgI58tJ6dvxKK7JLfvl-aqZkZLNqh07C6djM4XMCMDbW0GL9jEYKmGXPOuKZdPpRFgxPOOATsmJwSY1gRbuqQ4TQZEPOeNpI_kYbOKnvdze0rbSPW2YClf1TxMbcMx8-DE3YVljcnqu0SqoqyohmubVP-JSBS51t_k7KO9b7ZspqX4_-gMANGZTfh5PEch_AbJa6rLIG5dCeaT7HSnXgbUO-fI9BcvZPMcAuQl9vI9f75qWv-hCR5nv0C"/>
+</div>
+<div class="overflow-hidden">
+<h3 class="font-headline-md text-[16px] font-bold text-on-surface truncate">Netflix</h3>
+<p class="font-body-md text-body-md text-on-surface-variant truncate">jane.doe@gmail.com</p>
+</div>
+</div>
+<button class="opacity-0 group-hover:opacity-100 transition-opacity p-2 text-on-surface-variant hover:text-primary rounded-lg hover:bg-[#353534]">
+<span class="material-symbols-outlined">content_copy</span>
+</button>
+</div>
+<!-- Unselected Item: Bank of America -->
+<div class="group flex items-center justify-between p-4 rounded-xl hover:bg-surface-container-high border border-transparent cursor-pointer transition-colors">
+<div class="flex items-center gap-4 pl-2">
+<div class="w-10 h-10 rounded-full bg-white flex items-center justify-center p-1 shrink-0">
+<img class="w-full h-full object-contain" data-alt="A clear, professional rendering of the Bank of America flag logo on a white circular background. The image is styled as a crisp, minimalist vector icon suitable for a high-end secure dashboard interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkkiUIAd9-Iwoxb79e3fLGbndjXD9OdmqOU18yceNa6s511eXcU9_lpcf42Yb4v9FRAmR5zkv3S3Lo-j2za193tLZ83imSHaG4Xu8KcrNf3g0T7vnlB-cfMOLkuEzbftSgV3Cht1R7-gEVg6KRDzYMgFhP-2AEq8zDg-kK-gMvuuYgscACVB242WIWQBCsK5OTZpLXJ5PzSmsaWMMd1L0uE5eMr561rfYiZpPQDqFFox-kr2LUuqqD7iGJMHUa1NuAx5iJI3FidWpD"/>
+</div>
+<div class="overflow-hidden">
+<h3 class="font-headline-md text-[16px] font-bold text-on-surface truncate">Bank of America</h3>
+<p class="font-body-md text-body-md text-on-surface-variant truncate">j.doe99</p>
+</div>
+</div>
+<button class="opacity-0 group-hover:opacity-100 transition-opacity p-2 text-on-surface-variant hover:text-primary rounded-lg hover:bg-[#353534]">
+<span class="material-symbols-outlined">content_copy</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Right Column: Detail View (Glassmorphism / Bento) -->
+<div class="flex-1 bg-background overflow-y-auto p-8 relative">
+<!-- Subtle background decorative element -->
+<div class="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+<div class="max-w-3xl mx-auto space-y-8 mt-12">
+<!-- Detail Header -->
+<div class="flex items-center justify-between bg-[#1E1E1E] p-8 rounded-2xl border border-outline-variant shadow-lg">
+<div class="flex items-center gap-6">
+<div class="w-20 h-20 rounded-full bg-white flex items-center justify-center p-4 shadow-[0_0_20px_rgba(255,255,255,0.05)]">
+<img class="w-full h-full object-contain" data-alt="A large, highly detailed 3D render of the Google 'G' logo icon, rendered in clean vibrant colors on a pure white background. The lighting is soft and studio-quality, creating a premium tech aesthetic. Deep charcoal background context is implied." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHjQRXbLNjhooxqa2MBdktPpWbb0MD7q8lFqKRaF_ycIaqiEp10AJufXf6_HorocbUdty0MDs5wU8zts6qzdNuRKgsfQq3J_W1XgaqD26SBEAd4dFQycB4BtOaAEdT-A61pyuexAvMRfX7SHdyF_EvPkCq_E13L35kGpV1CVcWzzB8sCJsMIiTuADyaL9G2W1RURDycW_jf6l6s9PEbwV6nGa4GF-EqA7UAk6fY2Bxw6aN_oo2NloOXeTCOtZ1oohe8fGTUG7izS_G"/>
+</div>
+<div>
+<h2 class="font-display text-[32px] font-bold text-on-surface mb-1">Google</h2>
+<div class="flex items-center gap-2">
+<span class="px-2 py-1 rounded border border-outline-variant text-label-caps font-label-caps text-on-surface-variant">LOGIN</span>
+<span class="px-2 py-1 rounded border border-primary/30 bg-primary/10 text-label-caps font-label-caps text-primary">VERIFIED</span>
+</div>
+</div>
+</div>
+<button class="bg-primary-container text-[#121212] font-headline-md text-[16px] font-bold rounded-lg px-6 py-3 flex items-center gap-2 hover:bg-primary transition-colors shadow-[0_0_15px_rgba(0,230,118,0.2)]">
+<span class="material-symbols-outlined">open_in_new</span>
+                        Launch Website
+                    </button>
+</div>
+<!-- Detail Body: Bento Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Credentials Form (Spans 2 columns) -->
+<div class="lg:col-span-2 bg-[#1E1E1E] p-8 rounded-2xl border border-outline-variant space-y-6">
+<h3 class="font-headline-md text-headline-md font-bold text-on-surface border-b border-[#2A2A2A] pb-4 mb-6">Credentials</h3>
+<!-- Username Field -->
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant block">USERNAME / EMAIL</label>
+<div class="relative group">
+<input class="w-full bg-[#131313] text-on-surface font-mono-data text-mono-data border border-[#333333] rounded-lg pl-4 pr-12 py-3 focus:outline-none focus:border-primary transition-colors cursor-default" readonly="" type="text" value="jane.doe@gmail.com"/>
+<button class="absolute right-2 top-1/2 -translate-y-1/2 p-2 text-on-surface-variant hover:text-primary rounded-md hover:bg-[#2A2A2A] transition-colors" title="Copy Username">
+<span class="material-symbols-outlined text-[20px]">content_copy</span>
+</button>
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant block">PASSWORD</label>
+<div class="relative group">
+<input class="w-full bg-[#131313] text-on-surface font-mono-data text-mono-data border border-[#333333] rounded-lg pl-4 pr-20 py-3 focus:outline-none focus:border-primary transition-colors cursor-default tracking-widest" readonly="" type="password" value="supersecretpassword123"/>
+<div class="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1">
+<button class="p-2 text-on-surface-variant hover:text-primary rounded-md hover:bg-[#2A2A2A] transition-colors" title="Reveal Password">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary rounded-md hover:bg-[#2A2A2A] transition-colors" title="Copy Password">
+<span class="material-symbols-outlined text-[20px]">content_copy</span>
+</button>
+</div>
+</div>
+</div>
+<!-- 2FA Field -->
+<div class="space-y-2 pt-4 border-t border-[#2A2A2A]">
+<label class="font-label-caps text-label-caps text-on-surface-variant block flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">qr_code</span>
+                                AUTHENTICATOR (TOTP)
+                            </label>
+<div class="flex items-center justify-between bg-[#131313] border border-[#333333] rounded-lg p-4">
+<div class="font-mono-data text-[24px] tracking-[0.2em] text-primary">
+                                    482 190
+                                </div>
+<div class="flex items-center gap-4">
+<div class="w-6 h-6 rounded-full border-2 border-[#333333] relative flex items-center justify-center">
+<!-- Simple pie timer representation -->
+<div class="w-full h-full rounded-full border-2 border-primary border-l-transparent border-t-transparent animate-spin" style="animation-duration: 30s; animation-timing-function: linear;"></div>
+</div>
+<button class="p-2 text-on-surface-variant hover:text-primary rounded-md hover:bg-[#2A2A2A] transition-colors" title="Copy TOTP">
+<span class="material-symbols-outlined text-[20px]">content_copy</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Security Score Widget (Spans 1 column) -->
+<div class="bg-[#1E1E1E] p-8 rounded-2xl border border-outline-variant flex flex-col items-center text-center justify-center space-y-6 relative overflow-hidden">
+<h3 class="font-headline-md text-[16px] font-bold text-on-surface w-full text-left absolute top-6 left-6">Security Score</h3>
+<!-- Circular Progress Ring -->
+<div class="relative w-32 h-32 mt-8">
+<svg class="w-full h-full" viewbox="0 0 100 100">
+<!-- Background Circle -->
+<circle class="text-[#2A2A2A] stroke-current" cx="50" cy="50" fill="transparent" r="40" stroke-width="8"></circle>
+<!-- Progress Circle (95%) -->
+<circle class="text-primary stroke-current progress-ring__circle" cx="50" cy="50" fill="transparent" r="40" stroke-dasharray="251.2" stroke-dashoffset="12.56" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-display text-[24px] font-bold text-primary">95%</span>
+<span class="font-label-caps text-[10px] text-primary">STRONG</span>
+</div>
+</div>
+<div class="space-y-1 w-full pt-4">
+<p class="font-body-md text-[12px] text-on-surface-variant">Last Modified:</p>
+<p class="font-body-md text-[14px] text-on-surface">2 days ago</p>
+</div>
+<button class="w-full mt-auto bg-surface hover:bg-[#2A2A2A] text-on-surface border border-outline-variant font-headline-md text-[14px] font-bold rounded-lg px-4 py-3 transition-colors">
+                            Generate New Password
+                        </button>
+</div>
+</div>
+<!-- Bottom Metadata / Tags -->
+<div class="flex gap-2">
+<span class="px-3 py-1.5 rounded-full bg-[#1E1E1E] border border-outline-variant text-label-caps font-label-caps text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">folder</span>
+                        Work
+                    </span>
+<span class="px-3 py-1.5 rounded-full bg-[#1E1E1E] border border-outline-variant text-label-caps font-label-caps text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">sell</span>
+                        Email
+                    </span>
+</div>
+</div>
+</div>
+</main>
+</body></html>
